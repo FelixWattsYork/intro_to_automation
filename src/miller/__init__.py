@@ -3,18 +3,21 @@ import matplotlib.pyplot as plt
 import os
 
 
-def plot_surface(R_s, Z_s, savefig):
+def plot_surface(R_s, Z_s, savefig,ax=None):
     """
     Help on funciton plot_surface in module mille.py
 
     plots a flux surface in 2d
     """
+    if ax is not None:
+       ax = plt.subplot2grid((3, 3), (0, 0), colspan=2)
     plt.plot(R_s, Z_s)
     plt.axis("equal")
     plt.xlabel("R [m]")
     plt.ylabel("Z [m]")
     if savefig:
         plt.savefig(os.getcwd() + "/miller.png")
+    return ax
 
 
 def flux_surface(A, kappa, delta, R0):
