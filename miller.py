@@ -1,4 +1,7 @@
 from numpy import *
+import os
+print (os.getcwd())
+print (__file__)
 
 A=2.2
 kappa=1.5
@@ -15,4 +18,4 @@ plt.plot(R_s, Z_s)
 plt.axis("equal")
 plt.xlabel("R [m]")
 plt.ylabel("Z [m]")
-plt.savefig("/home/peter/Documents/RDM_RSE_Masterclass_20230712/automate_script/miller.png")
+plt.savefig(os.getcwd() + "/miller.png")
