@@ -1,9 +1,9 @@
 from numpy import pi, cos, sin, arcsin, linspace
 import matplotlib.pyplot as plt
 import os
+import argparse
 
-
-def plot_surface(R_s, Z_s, savefig,ax=None):
+def plot_surface(R_s, Z_s, savefig,name,ax=None):
     """
     Help on funciton plot_surface in module mille.py
 
@@ -16,7 +16,7 @@ def plot_surface(R_s, Z_s, savefig,ax=None):
     plt.xlabel("R [m]")
     plt.ylabel("Z [m]")
     if savefig:
-        plt.savefig(os.getcwd() + "/miller.png")
+        plt.savefig(os.getcwd() + "/" + name)
     return ax
 
 
@@ -34,12 +34,26 @@ def flux_surface(A, kappa, delta, R0):
 
 
 def main():
-    A = 2.2
-    kappa = 1.5
-    delta = 0.3
-    R0 = 2.5
+
+    parser = argparse.ArgumentParser(
+    prog="Miller",
+    description="Plots a flux surface",
+    epilog="Text at the bottom of help",
+    )
+
+    parser.add_argument("A", type=float,help="A value")
+    parser.add_argument("kappa", type=float, help = "kappa value")
+    parser.add_argument("delta", type=float, help = "delta value")
+    parser.add_argument("R0", type=float, help = "R0 Value")
+    parser.add_argument("-s", "--save", action="store_true")  # on/off flag
+    parser.add_argument("-o", "--output", type=str, default="miller.png", help="Output file name")
+
+    args = parser.parse_args()
+    A, kappa, delta, R0,savefile,file_name = args.A, args.kappa,args.delta,args.R0,args.save,args.output
+    print(A, kappa, delta, R0,savefile,file_name)
+
     R_s, Z_s = flux_surface(A, kappa, delta, R0)
-    plot_surface(R_s, Z_s, 1)
+    plot_surface(R_s, Z_s, savefile,file_name)
 
 
 if __name__ == "__main__":
