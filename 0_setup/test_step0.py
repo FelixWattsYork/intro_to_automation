@@ -26,6 +26,6 @@ def test_step0(tmp_path, monkeypatch):
     monkeypatch.syspath_prepend(top_level_dir)
     try:
         # We want to actually import the file and observe its side-effects
-        import miller  # noqa: F401
+        import src.miller as miller  # noqa: F401
     except FileNotFoundError:
         return
