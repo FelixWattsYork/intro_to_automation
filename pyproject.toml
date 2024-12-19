@@ -6,9 +6,10 @@ dependencies = [
     "scipy >= 1.14",
     "numpy >= 2.1.0",
     "pytest",
+    "tomli",
 ]
 [project.optional-dependencies]
 accel = ["scipy", "bottleneck", "numbagg", "numba>=0.54", "flox", "opt_einsum"]
 parallel = ["dask[complete]"]
 [project.scripts]
-miller = "miller:main"
+miller= "miller:main"
